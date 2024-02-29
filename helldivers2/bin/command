@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+pipe=/tmp/.config/rhasspy/profiles/en/command.pipe
+if [ -e $pipe ]; then
+  cat "$@" > $pipe
+else
+  echo "listener not started with pipe in place"
+fi
