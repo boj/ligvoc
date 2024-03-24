@@ -175,6 +175,9 @@ function handler {
         ems-mortar-sentry)
             ctrl $DOWN $UP $RIGHT $DOWN $RIGHT
             ;;
+        patriot-exosuit)
+            ctrl $LEFT $DOWN $RIGHT $UP $LEFT $DOWN $DOWN
+            ;;
         # Mission
         reinforce)
             ctrl $UP $DOWN $RIGHT $LEFT $UP
@@ -200,10 +203,8 @@ function handler {
         global-illumination-flare)
             ctrl $RIGHT $RIGHT $LEFT $LEFT
             ;;
-       
-        close-application)
-            # SUPER SHIFT Q
-            ydotool key 125:1 42:1 16:1 16:0 42:0 125:0
+        seismic-probe)
+            ctrl $UP $UP $LEFT $RIGHT $DOWN $DOWN
             ;;
     esac
 }
