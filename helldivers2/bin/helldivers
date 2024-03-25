@@ -1,26 +1,22 @@
 #!/usr/bin/env bash
+set -e
 
-export YDOTOOL_SOCKET=/tmp/.ydotools
-if [ ! -e /tmp/ydotools ]; then
-    socat UNIX-LISTEN:/tmp/.ydotools UNIX-LISTEN:/tmp/.ydotools &
-fi
-nohup ydotoold --socket-path /tmp/.ydotools > /dev/null 2>&1 &
+# Same as my ligbov script from https://github.com/boj/ligvoc/
 
-# https://github.com/torvalds/linux/blob/master/include/uapi/linux/input-event-codes.h
-CTRL_ON="29:1"
-CTRL_OFF="29:0"
-UP="103:1 103:0"
-LEFT="105:1 105:0"
-RIGHT="106:1 106:0"
-DOWN="108:1 108:0"
+CTRL=Control_L
+UP=Up
+LEFT=Left
+RIGHT=Right
+DOWN=Down
 
 function ctrl {
-    ydotool key $CTRL_ON
+    cmd="xdotool keydown $CTRL"
     for arg in $*; do
-        ydotool key $arg
-        sleep 0.1
+        cmd+=" key --delay 100 $arg"
     done
-    ydotool key $CTRL_OFF
+    cmd+=" keyup $CTRL"
+    echo $cmd
+    eval $cmd
 }
 
 function handler {
